@@ -21,6 +21,7 @@ table {
   border-style:solid;
   border-width:1px;
   border-bottom-width: 2px;
+  background-color:#AA0000;
   padding:0px;
   margin:0px;
 }
@@ -79,50 +80,28 @@ tr:nth-child(odd) > th {
   border-color:#AA0000;
 }
 
+.arrayStartCell{
+  //border-top-left-radius:5px;
+  //border-bottom-left-radius:5px;
+}
+
+.arrayEndCell{
+  //border-top-right-radius:5px;
+  //border-bottom-right-radius:5px;
+}
+
 </style>
 <script>
 var jsonFileName = "test.json";
-var jsonData = /*[
-[
-  [[1,2,3],[4,5,6],[7,8,9]],
-  [[10,11,12],[13,14,15],[16,17,18]],
-  [[19,20,21],[22,23,24],[25,26,27]],
-],
-[
-  [[28,2,3],[4,5,6],[7,8,9]],
-  [[4,5,6],[7,8,9],[1,2,3]],
-  [[7,8,9],[1,2,3],[4,5,6]],
-],
-[
-  [[1,2,3],[4,5,6],[7,8,9]],
-  [[4,5,6],[7,8,9],[1,2,3]],
-  [[7,8,9],[1,2,3],[4,5,6]],
-]
-];*/
-/*[
-{
-	"x":{"a":[1,2,3],"b":[4,5,6],"c":[7,8,9]},
-	"y":{"a":[10,11,12],"b":[13,14,15],"c":[16,17,18]},
-	"z":{"a":[19,20,21],"b":[22,23,24]},//,"c":[25,26,27]},
-},
-{
-  "x":{"a":[1,2,3],"b":[4,5,6],"c":[7,8,9]},
-  "y":{"a":[10,11,12],"b":[13,14,15],"c":[16,17,18]},
-  "z":{"a":[19,20,21],"b":[22,23,24],"c":[25,26,27]},
-},
-{
-  "x":{"a":[1,2,3],"b":[4,5,6],"c":[7,8,9]},
-  "y":{"a":[10,11,12],"b":[13,14,15],"c":[16,17,18]},
-  "z":{"a":[19,20,21],"b":[22,23,24],"c":[25,26,27]},
-}
-];*/
-[
+var jsonData = [
   { "Name":"Bob", "Value":14, "examples":{"x":"an","y":"object"} },
   { "Name":"Tim", "Value":"14", "examples":["an","array"] },
   { "Name":"Ned", "Value":NaN, "examples":[["an","array"],["of","arrays"]] },
   { "Name":"Jill", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
   { "Name":"Mark", "Value":null, "examples":{"x":["an","object"],"y":["of","arrays"]} },
-  { "Name":"Dave", "Value":true, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
+  { "Name":"Dave", "Value":false, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
+  { "Name":"Dan", "Value":true, "examples":[{"x":["an","array"],"y":["of","objects"]}, {"x":["of"],"y":["arrays"]}] },
+  { "Name":"Pete", "Value":{}, "examples":{"x":[{"z":"an","w":"object"}, {"z":"of","w":"arrays"}],"y":[{"z":"of","w":"objects"}, {"z":"blah","w":"blah"}]} },
   { "Name":"Stan", "examples":[
 	  [
 	    [["an","array"],["of","arrays"]],
@@ -135,23 +114,20 @@ var jsonData = /*[
     ]
   }
 ];
-/* "red": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
- "green": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
- "blue": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
-},*/
-/*{
- "red": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
- "green": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
- "blue": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
-}];*/
 
 function OnLoad()
 {
-  DisplayRootValue(jsonData, document.getElementById("json_area"));
-  
-  var dropZone = document.body;
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileSelect, false);
+	var jsonParam = new URL(document.location).searchParams.get("json");
+	if(jsonParam !== undefined && jsonParam !== null)
+	{
+		jsonData = JSON.parse(jsonParam);
+	}
+
+	DisplayRootValue(jsonData, document.getElementById("json_area"));
+
+	var dropZone = document.body;
+	dropZone.addEventListener('dragover', handleDragOver, false);
+	dropZone.addEventListener('drop', handleFileSelect, false);
 }
 
 function DisplayJsonValue(json, node)
@@ -190,11 +166,12 @@ function GetContainerShape(container)
 	if(typeof container !== "object")
 		return result;
 
-	result.push(Array.isArray(container));
-
+	var type0 = Array.isArray(container);
 	var type1 = undefined;
 	var type2 = undefined;
 	var type3 = undefined;
+
+	result.push(type0);
   
 	for(var colName0 in container)
 	{
@@ -261,6 +238,12 @@ function GetContainerShape(container)
 			if(type3 === true || type3 === false)
 				result.push(type3);
 		}
+	}
+	
+	if(type0 === false || type1 === false || type2 === false || type3 === false)
+	{
+		if(result[result.length-1] === true)
+			result.pop();
 	}
 
 	return result;
@@ -377,26 +360,27 @@ function DisplayShaped(obj, shape, node)
     for(var key in obj)
     {
 	  var row1 = obj[key];
-	  for(var row2Name in obj[key])
+	  for(var row2Name in row1)
 	  {
+	    var row2 = row1[row2Name];
 	    if(row2Headers && !row2Names.includes(row2Name))
 	    {
 		  row2Names.push(row2Name);
 	    }
 	    if(colHeaders)
 	    {
-		  for(var colName in row1[row2Name])
+		  for(var colName in row2)
 		  {
 		    if(!columnNames.includes(colName))
 		    {
 			  columnNames.push(colName);
 		    }
 		  }
-	    }
-	    else if(numColumns < row1.length)
-	    {
-		  numColumns = row1.length;
-	    }
+		}
+		else if(numColumns < row2.length)
+		{
+			numColumns = row2.length;
+		}
 	  }
     }
 	
@@ -638,7 +622,7 @@ function DisplayShaped(obj, shape, node)
 
 							if(Idx !== 0 && Idx2 === 0)
 							{
-								newCell.className = "separatorCol";
+								newCell.className += " separatorCol";
 							}
 						}
 					}
@@ -653,7 +637,7 @@ function DisplayShaped(obj, shape, node)
 							
 							if(Idx !== 0 && Idx2 === 0)
 							{
-								newCell.className = "separatorCol";
+								newCell.className += " separatorCol";
 							}
 						}
 					}
@@ -693,6 +677,15 @@ function CreateCell(container, key, row)
 		{
 			DisplayStyledString("missing", "SpecialValue", cellNode);
 			return cellNode;
+		}
+		
+		if(key === 0)
+		{
+			cellNode.className = "arrayStartCell";
+		}
+		if(key === container.length-1)
+		{
+			cellNode.className += " arrayEndCell";
 		}
 	}
 	else
@@ -988,10 +981,17 @@ function PrepareSave()
 	button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData)]));
 	button.download = jsonFileName;
 }
+
+function PrepareSavePretty()
+{
+	var button = document.getElementById("savePretty");
+	button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData, null, 2)]));
+	button.download = jsonFileName;
+}
 </script>
 </head>
 <body onload="OnLoad()">
-<div id="drop_zone">Drag your JSON file onto this page. When you're done, <a href="x" id="save" onmouseover="PrepareSave()">Export</a>
+<div id="drop_zone">Drag your JSON file onto this page. You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
 </div>
 <div id="json_area"></div>
 </body>
