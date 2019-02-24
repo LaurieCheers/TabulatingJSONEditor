@@ -99,7 +99,7 @@ var jsonData = /*[
   [[7,8,9],[1,2,3],[4,5,6]],
 ]
 ];*/
-[
+/*[
 {
 	"x":{"a":[1,2,3],"b":[4,5,6],"c":[7,8,9]},
 	"y":{"a":[10,11,12],"b":[13,14,15],"c":[16,17,18]},
@@ -115,16 +115,31 @@ var jsonData = /*[
   "y":{"a":[10,11,12],"b":[13,14,15],"c":[16,17,18]},
   "z":{"a":[19,20,21],"b":[22,23,24],"c":[25,26,27]},
 }
+];*/
+[
+  { "Name":"Bob", "Value":14, "examples":{"x":"an","y":"object"} },
+  { "Name":"Tim", "Value":"14", "examples":["an","array"] },
+  { "Name":"Ned", "Value":NaN, "examples":[["an","array"],["of","arrays"]] },
+  { "Name":"Jill", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
+  { "Name":"Mark", "Value":null, "examples":{"x":["an","object"],"y":["of","arrays"]} },
+  { "Name":"Dave", "Value":true, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
+  { "Name":"Stan", "examples":[
+	  [
+	    [["an","array"],["of","arrays"]],
+		[["blah","blah"],["blah","blah"]],
+	  ],
+	  [
+		[["of","arrays"],["of","arrays"]],
+		[["blah","blah"],[["with"],["nested",["arrays"]]]]
+	  ]
+    ]
+  }
 ];
-/*[{
-//  { "Name":null, "Age":14, "abilities":{"trample":true} },
-//  { "Name":"Jill", "Age":[{"foo":[]}], loot:[{"id":1012}, {"id":1013}] },
-//  { "Name":"Mark", "Age":{"foo":[], "bar":[]}, loot:{"id":[1012,1013]} }
- "red": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
+/* "red": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
  "green": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
  "blue": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
-},
-{
+},*/
+/*{
  "red": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
  "green": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
  "blue": [{ "A":"X", "B":"Y" }, { "A":"Z", "B":"W" }],
@@ -538,9 +553,12 @@ function DisplayShaped(obj, shape, node)
 			table.appendChild(headings2);
 
 			// space for the row headers
-			headings1.appendChild(document.createElement("TH"));
-			headings2.appendChild(document.createElement("TH"));
-			if(row1Headers && row2Headers)
+			if(row1Headers)
+			{
+				headings1.appendChild(document.createElement("TH"));
+				headings2.appendChild(document.createElement("TH"));
+			}
+			if(row2Headers)
 			{
 				headings1.appendChild(document.createElement("TH"));
 				headings2.appendChild(document.createElement("TH"));
@@ -645,7 +663,10 @@ function DisplayShaped(obj, shape, node)
 				prevRowHeader = row1Header;
 			}
 			
-			row1Header.rowSpan = row1HeaderShouldSpan;
+			if(row1Header !== undefined)
+			{
+				row1Header.rowSpan = row1HeaderShouldSpan;
+			}
 		}
 	}
 }
@@ -936,8 +957,16 @@ function handleFileSelect(evt)
 		{
 			var jsonArea = document.getElementById("json_area");
 			jsonArea.innerHTML = "";
-			jsonData = JSON.parse(evt.target.result);
-			DisplayRootValue(jsonData, document.getElementById("json_area"));
+			try
+			{
+				jsonData = JSON.parse(evt.target.result);
+				DisplayRootValue(jsonData, document.getElementById("json_area"));
+			}
+			catch(err)
+			{
+				jsonData = null;
+				document.getElementById("json_area").innerText = "Failed to load "+jsonFileName+". Error: "+err.message;
+			}
 		}
 
 		reader.onerror = function (evt) {
