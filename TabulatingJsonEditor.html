@@ -21,7 +21,7 @@ table {
   border-style:solid;
   border-width:1px;
   border-bottom-width: 2px;
-  background-color:#AA0000;
+  //background-color:#AA0000;
   padding:0px;
   margin:0px;
 }
@@ -97,11 +97,13 @@ var jsonData = [
   { "Name":"Bob", "Value":14, "examples":{"x":"an","y":"object"} },
   { "Name":"Tim", "Value":"14", "examples":["an","array"] },
   { "Name":"Ned", "Value":NaN, "examples":[["an","array"],["of","arrays"]] },
-  { "Name":"Jill", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
+  { "Name":"Jim", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
   { "Name":"Mark", "Value":null, "examples":{"x":["an","object"],"y":["of","arrays"]} },
   { "Name":"Dave", "Value":false, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
   { "Name":"Dan", "Value":true, "examples":[{"x":["an","array"],"y":["of","objects"]}, {"x":["of"],"y":["arrays"]}] },
   { "Name":"Pete", "Value":{}, "examples":{"x":[{"z":"an","w":"object"}, {"z":"of","w":"arrays"}],"y":[{"z":"of","w":"objects"}, {"z":"blah","w":"blah"}]} },
+  { "Name":"Joe", "Value":[], "examples":{"x":[["an","object"], ["of","arrays"]],"y":[["of","arrays"], ["blah","blah"]] }},
+  { "Name":"Sam", "Value":[], "examples":{"x":[[{"w":"an"},{"w":"object"}], [{"w":"of"},{"w":"arrays"}]],"y":[[{"w":"of"},{"w":"arrays"}], [{"w":"of"},{"w":"objects"}]] }},
   { "Name":"Stan", "examples":[
 	  [
 	    [["an","array"],["of","arrays"]],
@@ -242,7 +244,7 @@ function GetContainerShape(container)
 	
 	if(type0 === false || type1 === false || type2 === false || type3 === false)
 	{
-		if(result[result.length-1] === true)
+		while(result[result.length-1] === true)
 			result.pop();
 	}
 
@@ -936,36 +938,37 @@ function handleFileSelect(evt)
 	evt.preventDefault();
 
 	var files = evt.dataTransfer.files; // FileList object.
-
-	// files is a FileList of File objects. List some properties.
-	var output = [];
-	var i = 0;
 	//for (var i = 0; i < files.length; i++)
 	//{
-		var file = files[i];
-		jsonFileName = file.name;
-		var reader = new FileReader();
-		reader.readAsText(file, "UTF-8");
-		reader.onload = function (evt)
-		{
-			var jsonArea = document.getElementById("json_area");
-			jsonArea.innerHTML = "";
-			try
-			{
-				jsonData = JSON.parse(evt.target.result);
-				DisplayRootValue(jsonData, document.getElementById("json_area"));
-			}
-			catch(err)
-			{
-				jsonData = null;
-				document.getElementById("json_area").innerText = "Failed to load "+jsonFileName+". Error: "+err.message;
-			}
-		}
-
-		reader.onerror = function (evt) {
-			document.getElementById("json_area").innerHTML = "error reading file";
-		}
+	ReadFile(files[0]);
 	//}
+}
+
+function ReadFile(file)
+{
+	var output = [];
+	jsonFileName = file.name;
+	var reader = new FileReader();
+	reader.readAsText(file, "UTF-8");
+	reader.onload = function (evt)
+	{
+		var jsonArea = document.getElementById("json_area");
+		jsonArea.innerHTML = "";
+		try
+		{
+			jsonData = JSON.parse(evt.target.result);
+			DisplayRootValue(jsonData, document.getElementById("json_area"));
+		}
+		catch(err)
+		{
+			jsonData = null;
+			document.getElementById("json_area").innerText = "Failed to load "+jsonFileName+". Error: "+err.message;
+		}
+	}
+
+	reader.onerror = function (evt) {
+		document.getElementById("json_area").innerHTML = "error reading file";
+	}
 }
 
 function handleDragOver(evt)
@@ -991,7 +994,7 @@ function PrepareSavePretty()
 </script>
 </head>
 <body onload="OnLoad()">
-<div id="drop_zone">Drag your JSON file onto this page. You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
+<div id="drop_zone">Drag your JSON file onto this page, or <input type="file" id="input" onchange="ReadFile(this.files[0])"><br>You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
 </div>
 <div id="json_area"></div>
 </body>
