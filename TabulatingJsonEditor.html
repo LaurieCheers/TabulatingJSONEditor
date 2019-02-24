@@ -1,6 +1,6 @@
 <html>
-<head>
-<style>
+    <head>
+        <style>
 .SpecialValue{ font-weight: bold; font-style: italic; }
 
 .StringValue{ color:purple; }
@@ -11,730 +11,730 @@
 .HiddenValue{ display:inline-block; width: 1px; opacity: 0; }
 
 table {
-  border-collapse: collapse;
-  padding:0px;
-  margin:0px;
+    border-collapse: collapse;
+    padding:0px;
+    margin:0px;
 }
 
 .tableFrame {
-  display: inline-block;
-  border-style:solid;
-  border-width:1px;
-  border-bottom-width: 2px;
-  background-color:#AA0000;
-  padding:0px;
-  margin:0px;
+    display: inline-block;
+    border-style:solid;
+    border-width:1px;
+    border-bottom-width: 2px;
+    background-color:#AA0000;
+    padding:0px;
+    margin:0px;
 }
 
 .objectFrame {
-  display: inline-block;
-  border-style:solid;
-  border-color:#AA0000;
-  border-width:1px;
-  border-bottom-width: 2px;
-  border-radius:10px;
-  overflow:hidden;
-  padding:0px;
-  margin:0px;
+    display: inline-block;
+    border-style:solid;
+    border-color:#AA0000;
+    border-width:1px;
+    border-bottom-width: 2px;
+    border-radius:10px;
+    overflow:hidden;
+    padding:0px;
+    margin:0px;
 }
 
 
 td, th {
-  padding: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: left;
-  border-left: solid;
-  border-left-color: #ddaadd;
+    padding: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: left;
+    border-left: solid;
+    border-left-color: #ddaadd;
 }
 
 td:first-child, th:first-child {
-  border-left: none;
+    border-left: none;
 }
 
 tr:nth-child(even) {
-  background-color: #eedddd;
+    background-color: #eedddd;
 }
 
 tr:nth-child(odd) {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 tr:nth-child(even) > th {
-  background-color: #ffdd88;
+    background-color: #ffdd88;
 }
 
 tr:nth-child(odd) > th {
-  background-color: #ffffcc;
+    background-color: #ffffcc;
 }
 
 .separatorRow{
-  border-bottom-style:solid;
-  border-bottom-width:3px;
-  border-color:#AA0000;
+    border-bottom-style:solid;
+    border-bottom-width:3px;
+    border-color:#AA0000;
 }
 
 .separatorCol{
-  border-left-style:solid;
-  border-left-width:3px;
-  border-color:#AA0000;
+    border-left-style:solid;
+    border-left-width:3px;
+    border-color:#AA0000;
 }
 
 .arrayStartCell{
-  //border-top-left-radius:5px;
-  //border-bottom-left-radius:5px;
+    //border-top-left-radius:5px;
+    //border-bottom-left-radius:5px;
 }
 
 .arrayEndCell{
-  //border-top-right-radius:5px;
-  //border-bottom-right-radius:5px;
+    //border-top-right-radius:5px;
+    //border-bottom-right-radius:5px;
 }
 
-</style>
-<script>
-var jsonFileName = "test.json";
-var jsonData = [
-  { "Name":"Bob", "Value":14, "examples":{"x":"an","y":"object"} },
-  { "Name":"Tim", "Value":"14", "examples":["an","array"] },
-  { "Name":"Ned", "Value":NaN, "examples":[["an","array"],["of","arrays"]] },
-  { "Name":"Jill", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
-  { "Name":"Mark", "Value":null, "examples":{"x":["an","object"],"y":["of","arrays"]} },
-  { "Name":"Dave", "Value":false, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
-  { "Name":"Dan", "Value":true, "examples":[{"x":["an","array"],"y":["of","objects"]}, {"x":["of"],"y":["arrays"]}] },
-  { "Name":"Pete", "Value":{}, "examples":{"x":[{"z":"an","w":"object"}, {"z":"of","w":"arrays"}],"y":[{"z":"of","w":"objects"}, {"z":"blah","w":"blah"}]} },
-  { "Name":"Stan", "examples":[
-	  [
-	    [["an","array"],["of","arrays"]],
-		[["blah","blah"],["blah","blah"]],
-	  ],
-	  [
-		[["of","arrays"],["of","arrays"]],
-		[["blah","blah"],[["with"],["nested",["arrays"]]]]
-	  ]
-    ]
-  }
-];
+        </style>
+        <script>
+            var jsonFileName = "test.json";
+            var jsonData = [
+                { "Name":"Bob", "Value":14, "examples":{"x":"an","y":"object"} },
+                { "Name":"Tim", "Value":"14", "examples":["an","array"] },
+                { "Name":"Ned", "Value":NaN, "examples":[["an","array"],["of","arrays"]] },
+                { "Name":"Jill", "Value":undefined, "examples":[{"x":"an","y":"array"}, {"x":"of","y":"objects"}] },
+                { "Name":"Mark", "Value":null, "examples":{"x":["an","object"],"y":["of","arrays"]} },
+                { "Name":"Dave", "Value":false, "examples":{"x":{"z":"an","w":"object"},"y":{"z":"of","w":"objects"}} },
+                { "Name":"Dan", "Value":true, "examples":[{"x":["an","array"],"y":["of","objects"]}, {"x":["of"],"y":["arrays"]}] },
+                { "Name":"Pete", "Value":{}, "examples":{"x":[{"z":"an","w":"object"}, {"z":"of","w":"arrays"}],"y":[{"z":"of","w":"objects"}, {"z":"blah","w":"blah"}]} },
+                { "Name":"Stan", "examples":[
+                    [
+                        [["an","array"],["of","arrays"]],
+                        [["blah","blah"],["blah","blah"]],
+                    ],
+                    [
+                        [["of","arrays"],["of","arrays"]],
+                        [["blah","blah"],[["with"],["nested",["arrays"]]]]
+                    ]
+                ]
+                }
+            ];
 
-function OnLoad()
-{
-	var jsonParam = new URL(document.location).searchParams.get("json");
-	if(jsonParam !== undefined && jsonParam !== null)
-	{
-		jsonData = JSON.parse(jsonParam);
-	}
+            function OnLoad()
+            {
+                var jsonParam = new URL(document.location).searchParams.get("json");
+                if(jsonParam !== undefined && jsonParam !== null)
+                {
+                    jsonData = JSON.parse(jsonParam);
+                }
 
-	DisplayRootValue(jsonData, document.getElementById("json_area"));
+                DisplayRootValue(jsonData, document.getElementById("json_area"));
 
-	var dropZone = document.body;
-	dropZone.addEventListener('dragover', handleDragOver, false);
-	dropZone.addEventListener('drop', handleFileSelect, false);
-}
+                var dropZone = document.body;
+                dropZone.addEventListener('dragover', handleDragOver, false);
+                dropZone.addEventListener('drop', handleFileSelect, false);
+            }
 
-function DisplayJsonValue(json, node)
-{
-  if(json === null || json === undefined || typeof json === "number" || json === true || json === false)// || isNaN(json))
-  {
-    DisplayStyledString(""+json, "NumberValue", node);
-  }
-  else if(typeof json === "string")
-  {
-    DisplayStyledString("\""+json+"\"", "StringValue", node);
-  }
-  else
-  {
-	DisplayShaped(json, GetContainerShape(json), node);
-  }
-}
+            function DisplayJsonValue(json, node)
+            {
+                if(json === null || json === undefined || typeof json === "number" || json === true || json === false)// || isNaN(json))
+                {
+                    DisplayStyledString(""+json, "NumberValue", node);
+                }
+                else if(typeof json === "string")
+                {
+                    DisplayStyledString("\""+json+"\"", "StringValue", node);
+                }
+                else
+                {
+                    DisplayShaped(json, GetContainerShape(json), node);
+                }
+            }
 
-function DisplayStyledString(string, className, node)
-{
-  var span = document.createElement("SPAN");
-  span.className = className;
-  span.appendChild( document.createTextNode(string) );
-  node.appendChild( span );
-}
+            function DisplayStyledString(string, className, node)
+            {
+                var span = document.createElement("SPAN");
+                span.className = className;
+                span.appendChild( document.createTextNode(string) );
+                node.appendChild( span );
+            }
 
-function DisplaySpecialNode(value, node)
-{
-  node.appendChild( document.createTextNode(""+value) );
-}
+            function DisplaySpecialNode(value, node)
+            {
+                node.appendChild( document.createTextNode(""+value) );
+            }
 
-function GetContainerShape(container)
-{
-	var result = [];
+            function GetContainerShape(container)
+            {
+                var result = [];
 
-	if(typeof container !== "object")
-		return result;
+                if(typeof container !== "object")
+                    return result;
 
-	var type0 = Array.isArray(container);
-	var type1 = undefined;
-	var type2 = undefined;
-	var type3 = undefined;
+                var type0 = Array.isArray(container);
+                var type1 = undefined;
+                var type2 = undefined;
+                var type3 = undefined;
 
-	result.push(type0);
-  
-	for(var colName0 in container)
-	{
-		var item1 = container[colName0];
+                result.push(type0);
 
-		if(typeof item1 !== "object")
-			return result;
+                for(var colName0 in container)
+                {
+                    var item1 = container[colName0];
 
-		var itemType1 = Array.isArray(item1);
-		if(type1 === undefined)
-			type1 = itemType1;
-		else if(type1 !== itemType1)
-			return result;
+                    if(typeof item1 !== "object")
+                        return result;
 
-		for(var colName1 in item1)
-		{
-			var item2 = item1[colName1];
+                    var itemType1 = Array.isArray(item1);
+                    if(type1 === undefined)
+                        type1 = itemType1;
+                    else if(type1 !== itemType1)
+                        return result;
 
-			if(typeof item2 !== "object")
-			{
-				type2 = null;
-				break;
-			}
+                    for(var colName1 in item1)
+                    {
+                        var item2 = item1[colName1];
 
-			var itemType2 = Array.isArray(item2);
-			if(type2 === undefined)
-				type2 = itemType2;
-			else if(type2 !== itemType2)
-			{
-				type2 = null;
-				break;
-			}
+                        if(typeof item2 !== "object")
+                        {
+                            type2 = null;
+                            break;
+                        }
 
-			for(var colName2 in item2)
-			{
-				var item3 = item2[colName2];
+                        var itemType2 = Array.isArray(item2);
+                        if(type2 === undefined)
+                            type2 = itemType2;
+                        else if(type2 !== itemType2)
+                        {
+                            type2 = null;
+                            break;
+                        }
 
-				if(typeof item3 !== "object")
-				{
-					type3 = null;
-					break;
-				}
+                        for(var colName2 in item2)
+                        {
+                            var item3 = item2[colName2];
 
-				var itemType3 = Array.isArray(item3);
-				if(type3 === undefined)
-					type3 = itemType3;
-				else if(type3 !== itemType3)
-				{
-					type3 = null;
-					break;
-				}
-			}
-		}
-	}
-  
-	if(type1 === true || type1 === false)
-	{
-		result.push(type1);
+                            if(typeof item3 !== "object")
+                            {
+                                type3 = null;
+                                break;
+                            }
 
-		if(type2 === true || type2 === false)
-		{
-			result.push(type2);
+                            var itemType3 = Array.isArray(item3);
+                            if(type3 === undefined)
+                                type3 = itemType3;
+                            else if(type3 !== itemType3)
+                            {
+                                type3 = null;
+                                break;
+                            }
+                        }
+                    }
+                }
 
-			if(type3 === true || type3 === false)
-				result.push(type3);
-		}
-	}
-	
-	if(type0 === false || type1 === false || type2 === false || type3 === false)
-	{
-		if(result[result.length-1] === true)
-			result.pop();
-	}
+                if(type1 === true || type1 === false)
+                {
+                    result.push(type1);
 
-	return result;
-}
+                    if(type2 === true || type2 === false)
+                    {
+                        result.push(type2);
 
-function DisplayShaped(obj, shape, node)
-{
-  if(shape.length === 1)
-  {
-    if(shape[0])
-	  DisplaySimpleArray(obj, node);
-	else
-	  DisplaySimpleObject(obj, node);
-  }
-  else if(shape.length === 2)
-  {
-    var rowHeaders = (shape[0] === false);
-	var colHeaders = (shape[1] === false);
+                        if(type3 === true || type3 === false)
+                            result.push(type3);
+                    }
+                }
 
-	var columnNames = [];
-	var numRows = 0;
-	var numColumns = 0;
-    for(var key in obj)
-    {
-	  var row = obj[key];
-	  numRows++;
-      if(colHeaders)
-	  {
-	    for(var colName in row)
-	    {
-	      if(!columnNames.includes(colName))
-	      {
-		    columnNames.push(colName);
-			numColumns++;
-	      }
-	    }
-	  }
-	  else if(numColumns < row.length)
-	  {
-	    numColumns = row.length;
-	  }
-    }
-	
-	if(numRows === 0)
-	{
-		DisplayShaped(obj, [shape[0]], node);
-		return;
-	}
-	
-	if(!colHeaders && numColumns === 0)
-	{
-	  numColumns = 1;
-	}
-	
-    var isFirstEntry = true;	
-	var table = CreateTable(node, "tableFrame");
-	if(colHeaders)
-	{
-	  var headings = document.createElement("TR");
-	  table.appendChild(headings);
-	  if(rowHeaders)
-	    headings.appendChild(document.createElement("TH")); // space for the row headers
+                if(type0 === false || type1 === false || type2 === false || type3 === false)
+                {
+                    if(result[result.length-1] === true)
+                        result.pop();
+                }
 
-	  for(var Idx = 0; Idx < columnNames.length; ++Idx)
-	  {
-		var heading = document.createElement("TH");
-		DisplayStyledString(columnNames[Idx]+":", "ObjValue", heading);
-		headings.appendChild(heading);
-	  }
-	}
-		
-	for(var rowName in obj)
-	{
-		var row = obj[rowName];
-		var rowNode = document.createElement("TR");
-		if(rowHeaders)
-		{
-		  var rowHeader = document.createElement("TH");
-		  DisplayStyledString(rowName+":", "ObjValue", rowHeader);
-		  rowNode.appendChild(rowHeader);
-		}
-		if(colHeaders)
-		{
-		  for(var Idx = 0; Idx < columnNames.length; ++Idx)
-		  {
-		    CreateCell(row, columnNames[Idx], rowNode);
-		  }
-		}
-		else
-		{
-		  for(var Idx = 0; Idx < numColumns; ++Idx)
-		  {
-		    CreateCell(row, Idx, rowNode);
-		  }
-		}
-		table.appendChild(rowNode);
-	}
-  }
-  else if(shape.length === 3)
-  {
-    var row1Headers = (shape[0] === false);
-    var row2Headers = (shape[1] === false);
-	var colHeaders = (shape[2] === false);
-	
-	if(row1Headers || row2Headers)
-	{
-	  row1Headers = true;
-	  row2Headers = true;
-	}
+                return result;
+            }
 
-    var row2Names = [];
-	var columnNames = [];
-	var numColumns = 0;
-    for(var key in obj)
-    {
-	  var row1 = obj[key];
-	  for(var row2Name in row1)
-	  {
-	    var row2 = row1[row2Name];
-	    if(row2Headers && !row2Names.includes(row2Name))
-	    {
-		  row2Names.push(row2Name);
-	    }
-	    if(colHeaders)
-	    {
-		  for(var colName in row2)
-		  {
-		    if(!columnNames.includes(colName))
-		    {
-			  columnNames.push(colName);
-		    }
-		  }
-		}
-		else if(numColumns < row2.length)
-		{
-			numColumns = row2.length;
-		}
-	  }
-    }
-	
-	if(!colHeaders && numColumns === 0)
-	{
-	  numColumns = 1;
-	}
-	
-    var isFirstEntry = true;
-	var table = CreateTable(node, "tableFrame");
-	if(colHeaders)
-	{
-	  var headings = document.createElement("TR");
-	  table.appendChild(headings);
-	  if(row1Headers)
-	    headings.appendChild(document.createElement("TH")); // space for the row headers
-	  if(row2Headers)
-	    headings.appendChild(document.createElement("TH")); // space for the row headers
+            function DisplayShaped(obj, shape, node)
+            {
+                if(shape.length === 1)
+                {
+                    if(shape[0])
+                        DisplaySimpleArray(obj, node);
+                    else
+                        DisplaySimpleObject(obj, node);
+                }
+                else if(shape.length === 2)
+                {
+                    var rowHeaders = (shape[0] === false);
+                    var colHeaders = (shape[1] === false);
 
-	  for(var Idx = 0; Idx < columnNames.length; ++Idx)
-	  {
-		var heading = document.createElement("TH");
-		DisplayStyledString(columnNames[Idx]+":", "ObjValue", heading);
-		headings.appendChild(heading);
-	  }
-	}
-		
-	var prevRowNode = undefined;
-	for(var row1Name in obj)
-	{
-	  var row1 = obj[row1Name];
-	  var row1First = true;
-	  if(prevRowNode !== undefined)
-	  {
-		prevRowNode.className = "separatorRow";
-	  }
+                    var columnNames = [];
+                    var numRows = 0;
+                    var numColumns = 0;
+                    for(var key in obj)
+                    {
+                        var row = obj[key];
+                        numRows++;
+                        if(colHeaders)
+                        {
+                            for(var colName in row)
+                            {
+                                if(!columnNames.includes(colName))
+                                {
+                                    columnNames.push(colName);
+                                    numColumns++;
+                                }
+                            }
+                        }
+                        else if(numColumns < row.length)
+                        {
+                            numColumns = row.length;
+                        }
+                    }
 
-	  for(var row2Name in row1)
-	  {
-	    var row2 = row1[row2Name];
-		var rowNode = document.createElement("TR");
-				
-		if(row1Headers)
-		{
-		  var row1Header = document.createElement("TH");
-		  if(row1First)
-		  {
-			DisplayStyledString(row1Name+":", "ObjValue", row1Header);
-		  }
-		  rowNode.appendChild(row1Header);
-		  row1First = false;
-		}
-		if(row2Headers)
-		{
-		  var row2Header = document.createElement("TH");
-		  DisplayStyledString(row2Name+":", "ObjValue", row2Header);
-		  rowNode.appendChild(row2Header);
-		}
-		if(colHeaders)
-		{
-		  for(var Idx = 0; Idx < columnNames.length; ++Idx)
-		  {
-			CreateCell(row2, columnNames[Idx], rowNode);
-		  }
-		}
-		else
-		{
-		  for(var Idx = 0; Idx < numColumns; ++Idx)
-		  {
-			CreateCell(row2, Idx, rowNode);
-		  }
-		}
-		table.appendChild(rowNode);
-		prevRowNode = rowNode;
-	  }
-	}
-  }
-  else// if(shape.length === 4)
-  {
-		var row1Headers = (shape[0] === false);
-		var row2Headers = (shape[1] === false);
-		var colHeaders = (shape[2] === false || shape[3] === false);
+                    if(numRows === 0)
+                    {
+                        DisplayShaped(obj, [shape[0]], node);
+                        return;
+                    }
 
-		if(row1Headers || row2Headers)
-		{
-			row1Headers = true;
-			row2Headers = true;
-		}
+                    if(!colHeaders && numColumns === 0)
+                    {
+                        numColumns = 1;
+                    }
 
-		var row2Names = [];
-		var col1Names = [];
-		var numCols1 = 0;
-		var col2Names = [];
-		var numCols2 = 0;
-		for(var key in obj)
-		{
-			var row1 = obj[key];
-			for(var row2Name in obj[key])
-			{
-				if(row2Headers && !row2Names.includes(row2Name))
-				{
-					row2Names.push(row2Name);
-				}
-				var row2 = row1[row2Name];
-				if(colHeaders)
-				{
-					for(var col1Name in row2)
-					{
-						if(!col1Names.includes(col1Name))
-						{
-							col1Names.push(col1Name);
-						}
-						
-						for(var col2Name in row2[col1Name])
-						{
-							if(!col2Names.includes(col2Name))
-							{
-								col2Names.push(col2Name);
-							}
-						}
-					}
-				}
-				else
-				{
-					if(numCols1 < row1.length)
-					{
-						numCols1 = row1.length;
-					}
-					
-					for(var Idx = 0; Idx < row2.length; ++Idx)
-					{
-						var curLength = row2[Idx].length;
-						if(numCols2 < curLength)
-						{
-							numCols2 = curLength;
-						}
-					}
-				}
-			}
-		}
+                    var isFirstEntry = true;
+                    var table = CreateTable(node, "tableFrame");
+                    if(colHeaders)
+                    {
+                        var headings = document.createElement("TR");
+                        table.appendChild(headings);
+                        if(rowHeaders)
+                            headings.appendChild(document.createElement("TH")); // space for the row headers
 
-		if(!colHeaders && numCols2 === 0)
-		{
-			numCol2 = 1;
-		}
+                        for(var Idx = 0; Idx < columnNames.length; ++Idx)
+                        {
+                            var heading = document.createElement("TH");
+                            DisplayStyledString(columnNames[Idx]+":", "ObjValue", heading);
+                            headings.appendChild(heading);
+                        }
+                    }
 
-		var isFirstEntry = true;
-		var table = CreateTable(node, "tableFrame");
-		if(colHeaders)
-		{
-			var headings1 = document.createElement("TR");
-			table.appendChild(headings1);
-			var headings2 = document.createElement("TR");
-			table.appendChild(headings2);
+                    for(var rowName in obj)
+                    {
+                        var row = obj[rowName];
+                        var rowNode = document.createElement("TR");
+                        if(rowHeaders)
+                        {
+                            var rowHeader = document.createElement("TH");
+                            DisplayStyledString(rowName+":", "ObjValue", rowHeader);
+                            rowNode.appendChild(rowHeader);
+                        }
+                        if(colHeaders)
+                        {
+                            for(var Idx = 0; Idx < columnNames.length; ++Idx)
+                            {
+                                CreateCell(row, columnNames[Idx], rowNode);
+                            }
+                        }
+                        else
+                        {
+                            for(var Idx = 0; Idx < numColumns; ++Idx)
+                            {
+                                CreateCell(row, Idx, rowNode);
+                            }
+                        }
+                        table.appendChild(rowNode);
+                    }
+                }
+                else if(shape.length === 3)
+                {
+                    var row1Headers = (shape[0] === false);
+                    var row2Headers = (shape[1] === false);
+                    var colHeaders = (shape[2] === false);
 
-			// space for the row headers
-			if(row1Headers)
-			{
-				headings1.appendChild(document.createElement("TH"));
-				headings2.appendChild(document.createElement("TH"));
-			}
-			if(row2Headers)
-			{
-				headings1.appendChild(document.createElement("TH"));
-				headings2.appendChild(document.createElement("TH"));
-			}
+                    if(row1Headers || row2Headers)
+                    {
+                        row1Headers = true;
+                        row2Headers = true;
+                    }
 
-			for(var Idx = 0; Idx < col1Names.length; ++Idx)
-			{
-				var heading = document.createElement("TH");
-				heading.colSpan = col2Names.length;
-				DisplayStyledString(col1Names[Idx]+":", "ObjValue", heading);
-				headings1.appendChild(heading);
-				if(Idx !== 0)
-					heading.className = "separatorCol";
-				
-				for(var Idx2 = 0; Idx2 < col2Names.length; ++Idx2)
-				{
-					var heading2 = document.createElement("TH");
-					DisplayStyledString(col2Names[Idx2]+":", "ObjValue", heading2);
-					headings2.appendChild(heading2);
+                    var row2Names = [];
+                    var columnNames = [];
+                    var numColumns = 0;
+                    for(var key in obj)
+                    {
+                        var row1 = obj[key];
+                        for(var row2Name in row1)
+                        {
+                            var row2 = row1[row2Name];
+                            if(row2Headers && !row2Names.includes(row2Name))
+                            {
+                                row2Names.push(row2Name);
+                            }
+                            if(colHeaders)
+                            {
+                                for(var colName in row2)
+                                {
+                                    if(!columnNames.includes(colName))
+                                    {
+                                        columnNames.push(colName);
+                                    }
+                                }
+                            }
+                            else if(numColumns < row2.length)
+                            {
+                                numColumns = row2.length;
+                            }
+                        }
+                    }
 
-					if(Idx !== 0 && Idx2 === 0)
-						heading2.className = "separatorCol";
-					
-					/*if(Idx2 > 0) // add spacers
-					{
-						headings1.appendChild(document.createElement("TH"));
-					}*/
-				}
-			}
-		}
-		
-		var prevRowNode = undefined;
-		var prevRowHeader = undefined;
-		for(var row1Name in obj)
-		{
-			var row1 = obj[row1Name];
-			var row1First = true;
-			if(prevRowNode !== undefined)
-			{
-				prevRowNode.className = "separatorRow";
-			}
-			if(prevRowHeader !== undefined)
-			{
-				prevRowHeader.className = "separatorRow";
-			}
+                    if(!colHeaders && numColumns === 0)
+                    {
+                        numColumns = 1;
+                    }
 
-			var row1Header;
-			var row1HeaderShouldSpan = 0;
-			
-			for(var row2Name in row1)
-			{
-				var row2 = row1[row2Name];
-				var rowNode = document.createElement("TR");
-				
-				if(row1Headers && row1First)
-				{
-					var row1Header = document.createElement("TH");
-					DisplayStyledString(row1Name+":", "ObjValue", row1Header);
-					rowNode.appendChild(row1Header);
-				}
-				row1First = false;
-				row1HeaderShouldSpan++;
+                    var isFirstEntry = true;
+                    var table = CreateTable(node, "tableFrame");
+                    if(colHeaders)
+                    {
+                        var headings = document.createElement("TR");
+                        table.appendChild(headings);
+                        if(row1Headers)
+                            headings.appendChild(document.createElement("TH")); // space for the row headers
+                        if(row2Headers)
+                            headings.appendChild(document.createElement("TH")); // space for the row headers
 
-				if(row2Headers)
-				{
-					var row2Header = document.createElement("TH");
-					DisplayStyledString(row2Name+":", "ObjValue", row2Header);
-					rowNode.appendChild(row2Header);
-				}
-				if(colHeaders)
-				{
-					for(var Idx = 0; Idx < col1Names.length; ++Idx)
-					{
-						for(var Idx2 = 0; Idx2 < col2Names.length; ++Idx2)
-						{
-							var newCell = CreateCell2D(row2, [col1Names[Idx], col2Names[Idx2]], rowNode);
+                        for(var Idx = 0; Idx < columnNames.length; ++Idx)
+                        {
+                            var heading = document.createElement("TH");
+                            DisplayStyledString(columnNames[Idx]+":", "ObjValue", heading);
+                            headings.appendChild(heading);
+                        }
+                    }
 
-							if(Idx !== 0 && Idx2 === 0)
-							{
-								newCell.className += " separatorCol";
-							}
-						}
-					}
-				}
-				else
-				{
-					for(var Idx = 0; Idx < numCols1; ++Idx)
-					{
-						for(var Idx2 = 0; Idx2 < numCols2; ++Idx2)
-						{
-							var newCell = CreateCell2D(row2, [Idx, Idx2], rowNode);
-							
-							if(Idx !== 0 && Idx2 === 0)
-							{
-								newCell.className += " separatorCol";
-							}
-						}
-					}
-				}
-				table.appendChild(rowNode);
-				prevRowNode = rowNode;
-				prevRowHeader = row1Header;
-			}
-			
-			if(row1Header !== undefined)
-			{
-				row1Header.rowSpan = row1HeaderShouldSpan;
-			}
-		}
-	}
-}
+                    var prevRowNode = undefined;
+                    for(var row1Name in obj)
+                    {
+                        var row1 = obj[row1Name];
+                        var row1First = true;
+                        if(prevRowNode !== undefined)
+                        {
+                            prevRowNode.className = "separatorRow";
+                        }
 
-function CreateTable(node, className)
-{
-	var tableContainer = document.createElement("DIV");
-	tableContainer.className = className;
-	var table = document.createElement("TABLE");
-	table.cellSpacing = 0;
-	tableContainer.appendChild(table);
-	node.appendChild(tableContainer);
-	return table;
-}
+                        for(var row2Name in row1)
+                        {
+                            var row2 = row1[row2Name];
+                            var rowNode = document.createElement("TR");
 
-function CreateCell(container, key, row)
-{
-	var cellNode = document.createElement("TD");
-	row.appendChild(cellNode);
+                            if(row1Headers)
+                            {
+                                var row1Header = document.createElement("TH");
+                                if(row1First)
+                                {
+                                    DisplayStyledString(row1Name+":", "ObjValue", row1Header);
+                                }
+                                rowNode.appendChild(row1Header);
+                                row1First = false;
+                            }
+                            if(row2Headers)
+                            {
+                                var row2Header = document.createElement("TH");
+                                DisplayStyledString(row2Name+":", "ObjValue", row2Header);
+                                rowNode.appendChild(row2Header);
+                            }
+                            if(colHeaders)
+                            {
+                                for(var Idx = 0; Idx < columnNames.length; ++Idx)
+                                {
+                                    CreateCell(row2, columnNames[Idx], rowNode);
+                                }
+                            }
+                            else
+                            {
+                                for(var Idx = 0; Idx < numColumns; ++Idx)
+                                {
+                                    CreateCell(row2, Idx, rowNode);
+                                }
+                            }
+                            table.appendChild(rowNode);
+                            prevRowNode = rowNode;
+                        }
+                    }
+                }
+                else// if(shape.length === 4)
+                {
+                    var row1Headers = (shape[0] === false);
+                    var row2Headers = (shape[1] === false);
+                    var colHeaders = (shape[2] === false || shape[3] === false);
 
-	if(Array.isArray(container))
-	{
-		if(key >= container.length)
-		{
-			DisplayStyledString("missing", "SpecialValue", cellNode);
-			return cellNode;
-		}
-		
-		if(key === 0)
-		{
-			cellNode.className = "arrayStartCell";
-		}
-		if(key === container.length-1)
-		{
-			cellNode.className += " arrayEndCell";
-		}
-	}
-	else
-	{
-		if(!container.hasOwnProperty(key))
-		{
-			DisplayStyledString("missing", "SpecialValue", cellNode);
-			return cellNode;
-		}
-	}
+                    if(row1Headers || row2Headers)
+                    {
+                        row1Headers = true;
+                        row2Headers = true;
+                    }
 
-	DisplayJsonValue(container[key], cellNode);
-	
-	cellNode.contentEditable = true;
-	cellNode.addEventListener("input", function()
-	{
-		container[key] = JSON.parse(cellNode.innerText);
-	}, false);
-	
-	return cellNode;
-}
+                    var row2Names = [];
+                    var col1Names = [];
+                    var numCols1 = 0;
+                    var col2Names = [];
+                    var numCols2 = 0;
+                    for(var key in obj)
+                    {
+                        var row1 = obj[key];
+                        for(var row2Name in obj[key])
+                        {
+                            if(row2Headers && !row2Names.includes(row2Name))
+                            {
+                                row2Names.push(row2Name);
+                            }
+                            var row2 = row1[row2Name];
+                            if(colHeaders)
+                            {
+                                for(var col1Name in row2)
+                                {
+                                    if(!col1Names.includes(col1Name))
+                                    {
+                                        col1Names.push(col1Name);
+                                    }
 
-function CreateCell2D(container, keys, row)
-{
-	var prevContainer = container;
-	for(var Idx = 0; Idx < keys.length-1; ++Idx)
-	{
-		var key = keys[Idx];
-		if(Array.isArray(container))
-		{
-			if(key >= container.length)
-			{
-				return CreateCell(container, key, row);
-			}
-		}
-		else
-		{
-			if(!container.hasOwnProperty(key))
-			{
-				return CreateCell(container, key, row);
-			}
-		}
+                                    for(var col2Name in row2[col1Name])
+                                    {
+                                        if(!col2Names.includes(col2Name))
+                                        {
+                                            col2Names.push(col2Name);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if(numCols1 < row1.length)
+                                {
+                                    numCols1 = row1.length;
+                                }
 
-		container = container[key];
-	}
-	return CreateCell(container, keys[keys.length-1], row);
-}
+                                for(var Idx = 0; Idx < row2.length; ++Idx)
+                                {
+                                    var curLength = row2[Idx].length;
+                                    if(numCols2 < curLength)
+                                    {
+                                        numCols2 = curLength;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-/*
+                    if(!colHeaders && numCols2 === 0)
+                    {
+                        numCol2 = 1;
+                    }
+
+                    var isFirstEntry = true;
+                    var table = CreateTable(node, "tableFrame");
+                    if(colHeaders)
+                    {
+                        var headings1 = document.createElement("TR");
+                        table.appendChild(headings1);
+                        var headings2 = document.createElement("TR");
+                        table.appendChild(headings2);
+
+                        // space for the row headers
+                        if(row1Headers)
+                        {
+                            headings1.appendChild(document.createElement("TH"));
+                            headings2.appendChild(document.createElement("TH"));
+                        }
+                        if(row2Headers)
+                        {
+                            headings1.appendChild(document.createElement("TH"));
+                            headings2.appendChild(document.createElement("TH"));
+                        }
+
+                        for(var Idx = 0; Idx < col1Names.length; ++Idx)
+                        {
+                            var heading = document.createElement("TH");
+                            heading.colSpan = col2Names.length;
+                            DisplayStyledString(col1Names[Idx]+":", "ObjValue", heading);
+                            headings1.appendChild(heading);
+                            if(Idx !== 0)
+                                heading.className = "separatorCol";
+
+                            for(var Idx2 = 0; Idx2 < col2Names.length; ++Idx2)
+                            {
+                                var heading2 = document.createElement("TH");
+                                DisplayStyledString(col2Names[Idx2]+":", "ObjValue", heading2);
+                                headings2.appendChild(heading2);
+
+                                if(Idx !== 0 && Idx2 === 0)
+                                    heading2.className = "separatorCol";
+
+                                /*if(Idx2 > 0) // add spacers
+                    {
+                        headings1.appendChild(document.createElement("TH"));
+                    }*/
+                            }
+                        }
+                    }
+
+                    var prevRowNode = undefined;
+                    var prevRowHeader = undefined;
+                    for(var row1Name in obj)
+                    {
+                        var row1 = obj[row1Name];
+                        var row1First = true;
+                        if(prevRowNode !== undefined)
+                        {
+                            prevRowNode.className = "separatorRow";
+                        }
+                        if(prevRowHeader !== undefined)
+                        {
+                            prevRowHeader.className = "separatorRow";
+                        }
+
+                        var row1Header;
+                        var row1HeaderShouldSpan = 0;
+
+                        for(var row2Name in row1)
+                        {
+                            var row2 = row1[row2Name];
+                            var rowNode = document.createElement("TR");
+
+                            if(row1Headers && row1First)
+                            {
+                                var row1Header = document.createElement("TH");
+                                DisplayStyledString(row1Name+":", "ObjValue", row1Header);
+                                rowNode.appendChild(row1Header);
+                            }
+                            row1First = false;
+                            row1HeaderShouldSpan++;
+
+                            if(row2Headers)
+                            {
+                                var row2Header = document.createElement("TH");
+                                DisplayStyledString(row2Name+":", "ObjValue", row2Header);
+                                rowNode.appendChild(row2Header);
+                            }
+                            if(colHeaders)
+                            {
+                                for(var Idx = 0; Idx < col1Names.length; ++Idx)
+                                {
+                                    for(var Idx2 = 0; Idx2 < col2Names.length; ++Idx2)
+                                    {
+                                        var newCell = CreateCell2D(row2, [col1Names[Idx], col2Names[Idx2]], rowNode);
+
+                                        if(Idx !== 0 && Idx2 === 0)
+                                        {
+                                            newCell.className += " separatorCol";
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for(var Idx = 0; Idx < numCols1; ++Idx)
+                                {
+                                    for(var Idx2 = 0; Idx2 < numCols2; ++Idx2)
+                                    {
+                                        var newCell = CreateCell2D(row2, [Idx, Idx2], rowNode);
+
+                                        if(Idx !== 0 && Idx2 === 0)
+                                        {
+                                            newCell.className += " separatorCol";
+                                        }
+                                    }
+                                }
+                            }
+                            table.appendChild(rowNode);
+                            prevRowNode = rowNode;
+                            prevRowHeader = row1Header;
+                        }
+
+                        if(row1Header !== undefined)
+                        {
+                            row1Header.rowSpan = row1HeaderShouldSpan;
+                        }
+                    }
+                }
+            }
+
+            function CreateTable(node, className)
+            {
+                var tableContainer = document.createElement("DIV");
+                tableContainer.className = className;
+                var table = document.createElement("TABLE");
+                table.cellSpacing = 0;
+                tableContainer.appendChild(table);
+                node.appendChild(tableContainer);
+                return table;
+            }
+
+            function CreateCell(container, key, row)
+            {
+                var cellNode = document.createElement("TD");
+                row.appendChild(cellNode);
+
+                if(Array.isArray(container))
+                {
+                    if(key >= container.length)
+                    {
+                        DisplayStyledString("missing", "SpecialValue", cellNode);
+                        return cellNode;
+                    }
+
+                    if(key === 0)
+                    {
+                        cellNode.className = "arrayStartCell";
+                    }
+                    if(key === container.length-1)
+                    {
+                        cellNode.className += " arrayEndCell";
+                    }
+                }
+                else
+                {
+                    if(!container.hasOwnProperty(key))
+                    {
+                        DisplayStyledString("missing", "SpecialValue", cellNode);
+                        return cellNode;
+                    }
+                }
+
+                DisplayJsonValue(container[key], cellNode);
+
+                cellNode.contentEditable = true;
+                cellNode.addEventListener("input", function()
+                    {
+                        container[key] = JSON.parse(cellNode.innerText);
+                    }, false);
+
+                return cellNode;
+            }
+
+            function CreateCell2D(container, keys, row)
+            {
+                var prevContainer = container;
+                for(var Idx = 0; Idx < keys.length-1; ++Idx)
+                {
+                    var key = keys[Idx];
+                    if(Array.isArray(container))
+                    {
+                        if(key >= container.length)
+                        {
+                            return CreateCell(container, key, row);
+                        }
+                    }
+                    else
+                    {
+                        if(!container.hasOwnProperty(key))
+                        {
+                            return CreateCell(container, key, row);
+                        }
+                    }
+
+                    container = container[key];
+                }
+                return CreateCell(container, keys[keys.length-1], row);
+            }
+
+            /*
 function DisplayArray(array, node)
 {
   var columns = [];
@@ -743,18 +743,18 @@ function DisplayArray(array, node)
   {
     var item = array[Idx];
     if(typeof item !== "object" || Array.isArray(item))
-	{
-	  DisplaySimpleArray(array, node);
-	  return;
-	}
-	
-	for(var key in array[Idx])
-	{
-	  if(!columns.includes(key))
-	    columns.push(key);
-	}
+    {
+      DisplaySimpleArray(array, node);
+      return;
+    }
+
+    for(var key in array[Idx])
+    {
+      if(!columns.includes(key))
+        columns.push(key);
+    }
   }
-  
+
   DisplayStyledString("[", "ObjValue", node);
   var table = document.createElement("TABLE");
   var headings = document.createElement("TR");
@@ -769,230 +769,230 @@ function DisplayArray(array, node)
   for(var Idx = 0; Idx < array.length; ++Idx)
   {
     var row = document.createElement("TR");
-	var rowValue = array[Idx];
+    var rowValue = array[Idx];
     for(var colIdx = 0; colIdx < columns.length; ++colIdx)
     {
-	  var cell = document.createElement("TD");
-	  row.appendChild(cell);
+      var cell = document.createElement("TD");
+      row.appendChild(cell);
       if(colIdx === 0)
-	    DisplayStyledString("{", "HiddenValue", cell);
-		
+        DisplayStyledString("{", "HiddenValue", cell);
+
       DisplayStyledString(columns[colIdx]+":", "HiddenValue", cell);
-	  if(rowValue.hasOwnProperty(columns[colIdx]))
-	  {
-		DisplayJsonValue(rowValue[columns[colIdx]], cell);
-	  }
-	  else
-	  {
-		DisplayStyledString("missing", "SpecialValue", cell);
-	  }
-	  if(colIdx+1 < columns.length)
-		DisplayStyledString(",", "HiddenValue", cell);
-	  else if(Idx+1 < array.length)
-		DisplayStyledString("},", "HiddenValue", cell);
-	  else
-		DisplayStyledString("}", "HiddenValue", cell);
-	}
-	table.appendChild(row);
+      if(rowValue.hasOwnProperty(columns[colIdx]))
+      {
+        DisplayJsonValue(rowValue[columns[colIdx]], cell);
+      }
+      else
+      {
+        DisplayStyledString("missing", "SpecialValue", cell);
+      }
+      if(colIdx+1 < columns.length)
+        DisplayStyledString(",", "HiddenValue", cell);
+      else if(Idx+1 < array.length)
+        DisplayStyledString("},", "HiddenValue", cell);
+      else
+        DisplayStyledString("}", "HiddenValue", cell);
+    }
+    table.appendChild(row);
   }
   node.appendChild(table);
   DisplayStyledString("]", "ObjValue", node);
 }
-*/
-function DisplaySimpleArray(array, node)
-{
-	if(array.length === 0)
-	{
-		DisplayStyledString("[]", "ObjValue", node);
-		/*
-		DisplayStyledString("[", "ObjValue", node);
-		for(var Idx = 0; Idx < array.length; ++Idx)
-		{
-		DisplayJsonValue(array[Idx], node);
-		if(Idx+1 < array.length)
-			DisplayStyledString(", ", "ObjValue", node);
-		}
-		DisplayStyledString("]", "ObjValue", node);*/
-	}
-	else
-	{
-		var table = CreateTable(node, "objectFrame");
-		var row = document.createElement("TR");
-		for(var Idx = 0; Idx < array.length; ++Idx)
-		{
-			var item = CreateCell(array, Idx, row);
-		}
-		table.appendChild(row);
-	}
-}
+             */
+            function DisplaySimpleArray(array, node)
+            {
+                if(array.length === 0)
+                {
+                    DisplayStyledString("[]", "ObjValue", node);
+                    /*
+        DisplayStyledString("[", "ObjValue", node);
+        for(var Idx = 0; Idx < array.length; ++Idx)
+        {
+        DisplayJsonValue(array[Idx], node);
+        if(Idx+1 < array.length)
+            DisplayStyledString(", ", "ObjValue", node);
+        }
+        DisplayStyledString("]", "ObjValue", node);*/
+                }
+                else
+                {
+                    var table = CreateTable(node, "objectFrame");
+                    var row = document.createElement("TR");
+                    for(var Idx = 0; Idx < array.length; ++Idx)
+                    {
+                        var item = CreateCell(array, Idx, row);
+                    }
+                    table.appendChild(row);
+                }
+            }
 
-function DisplaySimpleObject(obj, node)
-{
-	var isEmpty = true;
-	for(var colName in obj)
-	{
-		isEmpty = false;
-		break;
-	}
-	
-	if(isEmpty)
-	{
-		DisplayStyledString("{}", "ObjValue", node);
-		return;
-	}
-	
-	var table = CreateTable(node, "objectFrame");
-	var headings = document.createElement("TR");
-	var cells = document.createElement("TR");
-	for(var colName in obj)
-	{
-		var header = document.createElement("TH");
-		DisplayStyledString(colName+":", "ObjValue", header);
-		headings.appendChild(header);
+            function DisplaySimpleObject(obj, node)
+            {
+                var isEmpty = true;
+                for(var colName in obj)
+                {
+                    isEmpty = false;
+                    break;
+                }
 
-		CreateCell(obj, colName, cells);
-	}
-	
-	table.appendChild(headings);
-	table.appendChild(cells);
+                if(isEmpty)
+                {
+                    DisplayStyledString("{}", "ObjValue", node);
+                    return;
+                }
 
-/*
-		var isFirstEntry = true;
-		DisplayStyledString("{ ", "ObjValue", node);
-		for(var key in obj)
-		{
-		  if(!isFirstEntry)
-			DisplayStyledString(", ", "ObjValue", node);
-				
-		  DisplayStyledString(key+": ", "ObjValue", node);
-		  DisplayJsonValue(obj[key], node);
+                var table = CreateTable(node, "objectFrame");
+                var headings = document.createElement("TR");
+                var cells = document.createElement("TR");
+                for(var colName in obj)
+                {
+                    var header = document.createElement("TH");
+                    DisplayStyledString(colName+":", "ObjValue", header);
+                    headings.appendChild(header);
 
-		  isFirstEntry = false;
-		}
-		DisplayStyledString(" }", "ObjValue", node);
-		*/
-}
+                    CreateCell(obj, colName, cells);
+                }
 
-function DisplayRootValue(obj, node)
-{
-	if(typeof obj !== "object" || Array.isArray(obj))
-	{
-	  DisplayJsonValue(obj, node);
-	}
-	else
-	{
-		for(var key in obj)
-		{
-		  var heading = document.createElement("H2");
-		  DisplayStyledString(key+": ", "ObjValue", heading);
-		  node.appendChild(heading);
-		  DisplayJsonValue(obj[key], node);
-		}
-	}
-}
+                table.appendChild(headings);
+                table.appendChild(cells);
 
-function WriteCell(container, index, newValue)
-{
-	container[index] = InterpretValue(newValue);
-}
+                /*
+        var isFirstEntry = true;
+        DisplayStyledString("{ ", "ObjValue", node);
+        for(var key in obj)
+        {
+          if(!isFirstEntry)
+            DisplayStyledString(", ", "ObjValue", node);
 
-function InterpretValue(str)
-{
-	str = TrimWhitespace(str);
-	if(str === "undefined")
-		return undefined;
-	else if(str === "null")
-		return null;
-	else if(str === "NaN")
-		return NaN;
+          DisplayStyledString(key+": ", "ObjValue", node);
+          DisplayJsonValue(obj[key], node);
 
-	var result = JSON.parse(str);
-	if(result !== undefined)
-		return result;
+          isFirstEntry = false;
+        }
+        DisplayStyledString(" }", "ObjValue", node);
+                 */
+            }
 
-	return str;
-}
+            function DisplayRootValue(obj, node)
+            {
+                if(typeof obj !== "object" || Array.isArray(obj))
+                {
+                    DisplayJsonValue(obj, node);
+                }
+                else
+                {
+                    for(var key in obj)
+                    {
+                        var heading = document.createElement("H2");
+                        DisplayStyledString(key+": ", "ObjValue", heading);
+                        node.appendChild(heading);
+                        DisplayJsonValue(obj[key], node);
+                    }
+                }
+            }
 
-function TrimWhitespace(str)
-{
-	var whitespaces = " \t\n\r";
-	for(var Idx = 0; Idx < str.length; ++Idx)
-	{
-		if(!whitespaces.includes(str[Idx]))
-			break;
-	}
-	str = str.substring(Idx);
-	for(var Idx = str.length-1; Idx >= 0; --Idx)
-	{
-		if(!whitespaces.includes(str[Idx]))
-			break;
-	}
-	return str.substring(0, Idx);
-}
+            function WriteCell(container, index, newValue)
+            {
+                container[index] = InterpretValue(newValue);
+            }
 
-function handleFileSelect(evt)
-{
-	evt.stopPropagation();
-	evt.preventDefault();
+            function InterpretValue(str)
+            {
+                str = TrimWhitespace(str);
+                if(str === "undefined")
+                    return undefined;
+                else if(str === "null")
+                    return null;
+                else if(str === "NaN")
+                    return NaN;
 
-	var files = evt.dataTransfer.files; // FileList object.
+                var result = JSON.parse(str);
+                if(result !== undefined)
+                    return result;
 
-	// files is a FileList of File objects. List some properties.
-	var output = [];
-	var i = 0;
-	//for (var i = 0; i < files.length; i++)
-	//{
-		var file = files[i];
-		jsonFileName = file.name;
-		var reader = new FileReader();
-		reader.readAsText(file, "UTF-8");
-		reader.onload = function (evt)
-		{
-			var jsonArea = document.getElementById("json_area");
-			jsonArea.innerHTML = "";
-			try
-			{
-				jsonData = JSON.parse(evt.target.result);
-				DisplayRootValue(jsonData, document.getElementById("json_area"));
-			}
-			catch(err)
-			{
-				jsonData = null;
-				document.getElementById("json_area").innerText = "Failed to load "+jsonFileName+". Error: "+err.message;
-			}
-		}
+                return str;
+            }
 
-		reader.onerror = function (evt) {
-			document.getElementById("json_area").innerHTML = "error reading file";
-		}
-	//}
-}
+            function TrimWhitespace(str)
+            {
+                var whitespaces = " \t\n\r";
+                for(var Idx = 0; Idx < str.length; ++Idx)
+                {
+                    if(!whitespaces.includes(str[Idx]))
+                        break;
+                }
+                str = str.substring(Idx);
+                for(var Idx = str.length-1; Idx >= 0; --Idx)
+                {
+                    if(!whitespaces.includes(str[Idx]))
+                        break;
+                }
+                return str.substring(0, Idx);
+            }
 
-function handleDragOver(evt)
-{
-	evt.stopPropagation();
-	evt.preventDefault();
-	evt.dataTransfer.dropEffect = 'link'; // Explicitly show this is a copy.
-}
-  
-function PrepareSave()
-{
-	var button = document.getElementById("save");
-	button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData)]));
-	button.download = jsonFileName;
-}
+            function handleFileSelect(evt)
+            {
+                evt.stopPropagation();
+                evt.preventDefault();
 
-function PrepareSavePretty()
-{
-	var button = document.getElementById("savePretty");
-	button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData, null, 2)]));
-	button.download = jsonFileName;
-}
-</script>
-</head>
-<body onload="OnLoad()">
-<div id="drop_zone">Drag your JSON file onto this page. You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
-</div>
-<div id="json_area"></div>
-</body>
+                var files = evt.dataTransfer.files; // FileList object.
+
+                // files is a FileList of File objects. List some properties.
+                var output = [];
+                var i = 0;
+                //for (var i = 0; i < files.length; i++)
+                //{
+                var file = files[i];
+                jsonFileName = file.name;
+                var reader = new FileReader();
+                reader.readAsText(file, "UTF-8");
+                reader.onload = function (evt)
+                {
+                    var jsonArea = document.getElementById("json_area");
+                    jsonArea.innerHTML = "";
+                    try
+                    {
+                        jsonData = JSON.parse(evt.target.result);
+                        DisplayRootValue(jsonData, document.getElementById("json_area"));
+                    }
+                    catch(err)
+                    {
+                        jsonData = null;
+                        document.getElementById("json_area").innerText = "Failed to load "+jsonFileName+". Error: "+err.message;
+                    }
+                }
+
+                reader.onerror = function (evt) {
+                    document.getElementById("json_area").innerHTML = "error reading file";
+                }
+                //}
+            }
+
+            function handleDragOver(evt)
+            {
+                evt.stopPropagation();
+                evt.preventDefault();
+                evt.dataTransfer.dropEffect = 'link'; // Explicitly show this is a copy.
+            }
+
+            function PrepareSave()
+            {
+                var button = document.getElementById("save");
+                button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData)]));
+                button.download = jsonFileName;
+            }
+
+            function PrepareSavePretty()
+            {
+                var button = document.getElementById("savePretty");
+                button.href = URL.createObjectURL(new Blob([JSON.stringify(jsonData, null, 2)]));
+                button.download = jsonFileName;
+            }
+        </script>
+    </head>
+    <body onload="OnLoad()">
+        <div id="drop_zone">Drag your JSON file onto this page. You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
+        </div>
+        <div id="json_area"></div>
+    </body>
 </html>
