@@ -797,45 +797,6 @@ function DisplayRootValue(obj, node)
 	}
 }
 
-function WriteCell(container, index, newValue)
-{
-	container[index] = InterpretValue(newValue);
-}
-
-function InterpretValue(str)
-{
-	str = TrimWhitespace(str);
-	if(str === "undefined")
-		return undefined;
-	else if(str === "null")
-		return null;
-	else if(str === "NaN")
-		return NaN;
-
-	var result = JSON.parse(str);
-	if(result !== undefined)
-		return result;
-
-	return str;
-}
-
-function TrimWhitespace(str)
-{
-	var whitespaces = " \t\n\r";
-	for(var Idx = 0; Idx < str.length; ++Idx)
-	{
-		if(!whitespaces.includes(str[Idx]))
-			break;
-	}
-	str = str.substring(Idx);
-	for(var Idx = str.length-1; Idx >= 0; --Idx)
-	{
-		if(!whitespaces.includes(str[Idx]))
-			break;
-	}
-	return str.substring(0, Idx);
-}
-
 function handleFileSelect(evt)
 {
 	evt.stopPropagation();
