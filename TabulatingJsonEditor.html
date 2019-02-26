@@ -48,6 +48,10 @@ td, th {
 	border-left-color: #ddaadd;
 }
 
+th{
+	color: #dd0000
+}
+
 td:first-child, th:first-child {
 	border-left: none;
 }
@@ -265,8 +269,8 @@ function DisplayShaped(obj, shape, node)
 		var colHeaders = (shape[1] === false);
 
 		var columnNames = [];
+		var columnNamesLookup = {};
 		var numRows = 0;
-		var numColumns = 0;
 		for(var key in obj)
 		{
 			var row = obj[key];
@@ -275,16 +279,18 @@ function DisplayShaped(obj, shape, node)
 			{
 				for(var colName in row)
 				{
-					if(!columnNames.includes(colName))
+					if(!columnNamesLookup.hasOwnProperty(colName))
 					{
 						columnNames.push(colName);
 						numColumns++;
 					}
 				}
 			}
-			else if(numColumns < row.length)
+			else
 			{
-				numColumns = row.length;
+				while(columnNames.length < row.length)
+					columnNames.push(columnNames.length);
+				}
 			}
 		}
 
@@ -294,13 +300,14 @@ function DisplayShaped(obj, shape, node)
 			return;
 		}
 
-		if(!colHeaders && numColumns === 0)
+		if(!colHeaders && columnNames.length === 0)
 		{
-			numColumns = 1;
+			columnNames.push(0);
 		}
 
 		var isFirstEntry = true;
 		var table = CreateTable(node, "tableFrame");
+		var allHeaders = [];
 		if(colHeaders)
 		{
 			var headings = document.createElement("TR");
@@ -310,9 +317,7 @@ function DisplayShaped(obj, shape, node)
 
 			for(var Idx = 0; Idx < columnNames.length; ++Idx)
 			{
-				var heading = document.createElement("TH");
-				DisplayStyledString(columnNames[Idx]+":", "ObjValue", heading);
-				headings.appendChild(heading);
+				CreateSortableHeader(columnNames[Idx], Idx+(rowHeaders?1:0), table, allHeaders, headings);
 			}
 		}
 
@@ -323,22 +328,12 @@ function DisplayShaped(obj, shape, node)
 			if(rowHeaders)
 			{
 				var rowHeader = document.createElement("TH");
-				DisplayStyledString(rowName+":", "ObjValue", rowHeader);
+				rowHeader.appendChild(document.createTextNode(rowName+":"));
 				rowNode.appendChild(rowHeader);
 			}
-			if(colHeaders)
+			for(var Idx = 0; Idx < columnNames.length; ++Idx)
 			{
-				for(var Idx = 0; Idx < columnNames.length; ++Idx)
-				{
-					CreateCell(row, columnNames[Idx], rowNode);
-				}
-			}
-			else
-			{
-				for(var Idx = 0; Idx < numColumns; ++Idx)
-				{
-					CreateCell(row, Idx, rowNode);
-				}
+				CreateCell(row, columnNames[Idx], rowNode);
 			}
 			table.appendChild(rowNode);
 		}
@@ -662,6 +657,66 @@ function CreateTable(node, className)
 	return table;
 }
 
+function CreateSortableHeader(key, index, table, allHeaders, node)
+{
+	var heading = document.createElement("TH");
+	DisplayStyledString(key+":", "ObjValue", heading);
+	node.appendChild(heading);
+	
+	allHeaders.push(heading);
+
+	var sortType = 0;
+	
+	heading.onclick = function()
+	{
+		switch(sortType)
+		{
+			case 2: // was none/descending -> sort descending
+				sortType = 1;
+				heading.innerText = key+":"+"▼";
+				break;
+			default: // was descending -> sort ascending
+				sortType = 2;
+				heading.innerText = key+":"+"▲";
+				break;
+		}
+
+		var headings = table.firstChild;
+		table.removeChild(headings);
+		var rows = [];
+		while (table.hasChildNodes())
+		{
+			var newRow = table.firstChild;
+			newRow.sortKey = newRow.childNodes[index].cellValue;
+			rows.push(newRow);
+			table.removeChild(newRow);
+		}
+		if(sortType === 2)
+			rows.sort((a,b) => (a.sortKey > b.sortKey) ? 1 : ((b.sortKey > a.sortKey) ? -1 : 0));
+		else
+			rows.sort((a,b) => (a.sortKey > b.sortKey) ? -1 : ((b.sortKey > a.sortKey) ? 1 : 0));
+		table.appendChild(headings);
+		for(var Idx = 0; Idx < rows.length; ++Idx)
+		{
+			table.appendChild(rows[Idx]);
+		}
+		
+		for(var Idx = 0; Idx < allHeaders.length; ++Idx)
+		{
+			var otherHeader = allHeaders[Idx];
+			if(otherHeader === heading)
+				continue;
+			otherHeader.sortByNone();
+		}
+	}
+	
+	heading.sortByNone = function()
+	{
+		sortType = 0;
+		heading.innerText = key+":";
+	}
+}
+
 function CreateCell(container, key, row)
 {
 	var cellNode = document.createElement("TD");
@@ -694,6 +749,7 @@ function CreateCell(container, key, row)
 	}
 
 	DisplayJsonValue(container[key], cellNode);
+	cellNode.cellValue = container[key];
 
 	cellNode.contentEditable = true;
 	cellNode.addEventListener("input", function()
@@ -764,19 +820,17 @@ function DisplaySimpleObject(obj, node)
 	}
 
 	var table = CreateTable(node, "objectFrame");
-	var headings = document.createElement("TR");
-	var cells = document.createElement("TR");
 	for(var colName in obj)
 	{
+		var row = document.createElement("TR");
+		table.appendChild(row);
+
 		var header = document.createElement("TH");
 		DisplayStyledString(colName+":", "ObjValue", header);
-		headings.appendChild(header);
+		row.appendChild(header);
 
-		CreateCell(obj, colName, cells);
+		CreateCell(obj, colName, row);
 	}
-
-	table.appendChild(headings);
-	table.appendChild(cells);
 }
 
 function DisplayRootValue(obj, node)
@@ -860,7 +914,9 @@ function PrepareSavePretty()
 </script>
 </head>
 <body onload="OnLoad()">
-	<div id="drop_zone">Drag your JSON file onto this page, or <input type="file" id="input" onchange="ReadFile(this.files[0])"><br>You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a> or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
+	<div>Drag your JSON file onto this page, or <input type="file" id="input" onchange="ReadFile(this.files[0])"><br>
+	You can edit the data and then <a href="x" id="save" onmouseover="PrepareSave()">Compact Export</a>
+	or <a href="x" id="savePretty" onmouseover="PrepareSavePretty()">Pretty Export</a>
 	</div>
 	<div id="json_area"></div>
 </body>
