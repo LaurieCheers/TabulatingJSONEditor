@@ -673,13 +673,13 @@ function CreateSortableHeader(key, index, table, allHeaders, node)
 	{
 		switch(sortType)
 		{
-			case 2: // was none/descending -> sort descending
+			case 2: // was ascending -> sort descending
 				sortType = 1;
-				heading.innerText = key+":"+"▼";
+				heading.innerText = key+":"+"\u25bc";
 				break;
-			default: // was descending -> sort ascending
+			default: // was none/descending -> sort ascending
 				sortType = 2;
-				heading.innerText = key+":"+"▲";
+				heading.innerText = key+":"+"\u25b2";
 				break;
 		}
 
