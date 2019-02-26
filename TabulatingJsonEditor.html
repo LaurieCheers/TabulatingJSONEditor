@@ -281,6 +281,7 @@ function DisplayShaped(obj, shape, node)
 				{
 					if(!columnNamesLookup.hasOwnProperty(colName))
 					{
+						columnNamesLookup[colName] = true;
 						columnNames.push(colName);
 						numColumns++;
 					}
@@ -289,6 +290,7 @@ function DisplayShaped(obj, shape, node)
 			else
 			{
 				while(columnNames.length < row.length)
+				{
 					columnNames.push(columnNames.length);
 				}
 			}
