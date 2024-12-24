@@ -52,7 +52,6 @@ td, th {
 th{
 	color: #dd0000;
     position: sticky;
-    top: 0; 
 }
 
 td:first-child, th:first-child {
